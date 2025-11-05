@@ -12,10 +12,10 @@ dist/
 build/
 venv/
 .env
-.env.*  # in case you have multiple env files
+.env.*  # multiple env files
 
 # -----------------------------
-# React / Node
+# Node / React
 # -----------------------------
 node_modules/
 npm-debug.log*
@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 yarn.lock
-/build
+/dist
 /.next
 /out
 
@@ -48,10 +48,8 @@ Thumbs.db
 *.bak
 *.swp
 
-
-# Ignore local video files
+# -----------------------------
+# Local video / download files
+# -----------------------------
 Backend/video.mp4
 Backend/downloads/
-venv/
-__pycache__/
-
