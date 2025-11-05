@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify  # Flask framework for API creation
 from flask_cors import CORS  # To allow cross-origin requests (frontend <-> backend)
 from nodes.extract_frames import extract_key_frames, analyze_with_gemini  # Custom functions for frame extraction & analysis
-from nodes.segment_product import segment_product_with_gemini  # Custom function for product segmentation
+from nodes.segment_product import segment_product_with_rembg # Custom function for product segmentation
 import traceback  # For detailed error logging
 
 # Initialize Flask app
@@ -45,7 +45,7 @@ def extract_products():
         # Optional debug: print(f"✅ Gemini analysis complete. Found {len(products)} results")
 
         # 3️⃣ Segment the main product from the frames using Gemini
-        segmented = segment_product_with_gemini(frames)
+        segmented = segment_product_with_rembg(frames)
 
         # Return all results as JSON
         return jsonify({
