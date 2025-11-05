@@ -47,3 +47,11 @@ Thumbs.db
 *.log
 *.bak
 *.swp
+
+
+# Ignore local video files
+Backend/video.mp4
+Backend/downloads/
+venv/
+__pycache__/
+
