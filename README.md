@@ -31,8 +31,7 @@ npm install
 # Run the development server
 npm run dev
 App runs at  http://localhost:5173
-
-
+```
 
 # Product Segmentation Workflow using Rembg
 
@@ -74,7 +73,7 @@ Example JSON response from the backend:
     }
   ]
 }
-
+```
 
 
 
