@@ -15,6 +15,8 @@ function App() {
   const [response, setResponse] = useState(""); // API response message
   const [products, setProducts] = useState([]); // Extracted product frames
   const [segmentedImages, setSegmentedImages] = useState([]); // Segmented product images
+  const [enhancedImages, setEnhancedImages] = useState([]);
+
 
   // -------------------- Helper Function --------------------
   const getYouTubeThumbnail = (url) => {
@@ -77,6 +79,11 @@ function App() {
       if (res.data.segmented_images) {
         setSegmentedImages(res.data.segmented_images);
       }
+
+      if (res.data.enhanced_images) {
+        setEnhancedImages(res.data.enhanced_images);
+      }
+
     } catch (err) {
       console.error("Backend error:", err);
       setResponse(
@@ -128,8 +135,8 @@ function App() {
           onClick={handleSubmit}
           disabled={loading}
           className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white font-semibold transition-all duration-300 ${loading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-linear-to-br from-blue-500 to-indigo-600 hover:shadow-lg hover:from-indigo-500 hover:to-blue-600"
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-linear-to-br from-blue-500 to-indigo-600 hover:shadow-lg hover:from-indigo-500 hover:to-blue-600"
             }`}
         >
           {loading ? (
@@ -208,6 +215,33 @@ function App() {
             </div>
           </div>
         )}
+
+        {enhancedImages.length > 0 && (
+          <div className="mt-8">
+            <h2 className="text-xl font-bold mb-3">✨ Enhanced Product Images</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {enhancedImages.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white/80 p-3 rounded-xl shadow-md border border-gray-200/60"
+                >
+                  <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                    Frame {item.frame_index}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    <img
+                      src={`data:image/png;base64,${item.enhancements[0]}`}
+                      alt={`Enhanced Frame ${item.frame_index}`}
+                      className="rounded-lg shadow-md w-full h-auto object-cover"
+                    />
+
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
       </motion.div>
     </div>
   );
