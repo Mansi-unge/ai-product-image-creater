@@ -73,7 +73,7 @@ def enhance_product_images(segmented_images, num_enhancements=2):
                         result = response.json()
                         enhanced_b64 = result["artifacts"][0]["base64"]
                         enhanced_images_b64.append(enhanced_b64)
-                        print(f"✅ Frame {frame_index} enhanced with background: {background}")
+                        print(f" Frame {frame_index} enhanced with background: {background}")
                     elif response.status_code == 502:
                         print(f"⚠ API 502 — retrying frame {frame_index}...")
                         time.sleep(3)

@@ -36,7 +36,7 @@ def segment_product_with_rembg(frames):
             })
 
         except Exception as e:
-            print(f"⚠️ rembg failed on frame {i}: {e}")
+            print(f" rembg failed on frame {i}: {e}")
             segmented_images.append({
                 "frame_index": i,
                 "segmented_image": frame_b64,  # fallback to original

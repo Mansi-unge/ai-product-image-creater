@@ -32,25 +32,25 @@ def extract_products():
         return jsonify({"error": "Missing video URL"}), 400
 
     try:
-        print(f"🎥 Received video URL: {video_url}")
+        print(f" Received video URL: {video_url}")
 
-        # Step 1️⃣ Extract frames
+        # Step  Extract frames
         frames = extract_key_frames(video_url)
-        print(f"✅ Extracted {len(frames)} key frames")
+        print(f" Extracted {len(frames)} key frames")
 
-        # Step 2️⃣ Analyze frames with Gemini
+        # Step 2️ Analyze frames with Gemini
         products = analyze_with_gemini(frames)
-        print(f"✅ Gemini analysis complete. Found {len(products)} product mentions")
+        print(f" Gemini analysis complete. Found {len(products)} product mentions")
 
-        # Step 3️⃣ Segment products using rembg
+        # Step 3️ Segment products using rembg
         segmented = segment_product_with_rembg(frames)
-        print(f"✅ Segmented {len(segmented['segmented_images'])} product images")
+        print(f" Segmented {len(segmented['segmented_images'])} product images")
 
-        # Step 4️⃣ Enhance products using Stability AI
+        # Step 4️ Enhance products using Stability AI
         enhanced = enhance_product_images(segmented["segmented_images"])
-        print(f"✅ Generated {sum(len(e['enhancements']) for e in enhanced)} enhanced images")
+        print(f" Generated {sum(len(e['enhancements']) for e in enhanced)} enhanced images")
 
-        # Step 5️⃣ Return all results as JSON
+        # Step 5️ Return all results as JSON
         return jsonify({
             "products": products,
             "segmented_images": segmented["segmented_images"],
@@ -58,7 +58,7 @@ def extract_products():
         })
 
     except Exception as e:
-        print("❌ Error occurred:\n", traceback.format_exc())
+        print(" Error occurred:\n", traceback.format_exc())
         return jsonify({"error": str(e)}), 500
 
 

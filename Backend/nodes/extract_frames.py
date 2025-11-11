@@ -43,7 +43,7 @@ def download_youtube_video(video_url):
             video_path = ydl.prepare_filename(info)  # Get local path to downloaded file
             return video_path
     except Exception as e:
-        print(f"❌ yt_dlp download failed: {e}")
+        print(f"yt_dlp download failed: {e}")
         raise ValueError("Could not download YouTube video.")
 
 
@@ -64,7 +64,7 @@ def extract_key_frames(video_url, interval=5):
     # Open video using OpenCV
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise ValueError(f"❌ Could not open video: {video_path}")
+        raise ValueError(f"Could not open video: {video_path}")
 
     # Get frames per second (fps) to calculate frame intervals
     fps = int(cap.get(cv2.CAP_PROP_FPS))
@@ -87,7 +87,7 @@ def extract_key_frames(video_url, interval=5):
         count += 1
 
     cap.release()  # Release video file
-    print(f"✅ Extracted {len(frames)} key frames")
+    print(f" Extracted {len(frames)} key frames")
     return frames
 
 
@@ -132,7 +132,7 @@ def analyze_with_gemini(frames):
                 "description": response.text.strip()  # Gemini's response
             })
         except Exception as e:
-            print(f"⚠️ Gemini API failed on frame {i}: {e}")
+            print(f" Gemini API failed on frame {i}: {e}")
 
-    print(f"✅ Processed {len(products)} frames with Gemini")
+    print(f" Processed {len(products)} frames with Gemini")
     return products

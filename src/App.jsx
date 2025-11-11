@@ -71,9 +71,9 @@ function App() {
         });
 
         setProducts(parsedProducts);
-        setResponse("✅ Product images extracted successfully!");
+        setResponse(" Product images extracted successfully!");
       } else {
-        setResponse("⚠️ No products found in the video.");
+        setResponse(" No products found in the video.");
       }
 
       if (res.data.segmented_images) {
@@ -87,7 +87,7 @@ function App() {
     } catch (err) {
       console.error("Backend error:", err);
       setResponse(
-        "❌ Backend error: " + (err.response?.data?.error || err.message)
+        " Backend error: " + (err.response?.data?.error || err.message)
       );
     } finally {
       setLoading(false);
